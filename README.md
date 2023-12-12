@@ -11,7 +11,7 @@ https://rna.informatik.uni-freiburg.de/Teaching/ (https://doi.org/10.1093/nar/gk
 
 implement Nussinov
 
-read Nussinov1978
+read Nussinov1978 (-> add ref to the implementation)
 
 read Wuchty1999
 
@@ -32,3 +32,11 @@ Sankoff algorithm
 SCFG
 
 Furier transformations
+
+bpseq <-> ct <-> dbn
+
+stacking annotation
+
+base pair annotation
+
+pdb mmcif
