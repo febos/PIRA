@@ -1,6 +1,6 @@
-# PIRA
-Python implementations of RNA algorithms
+# PIRAT
 
+Python Implementations of RNA Algorithms & uTilities
 
 ## References
 
@@ -40,3 +40,11 @@ stacking annotation
 base pair annotation
 
 pdb mmcif
+
+urs loop classification
+
+Hidden Markov Models
+
+Global/Local Alignment
+
+Tree edit & Tree alignment
