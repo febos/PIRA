@@ -21,6 +21,8 @@ _____________________________________
 
 Kabshch algorithm
 
+Number of structures
+
 Turner algorithm
 
 McCaskill algorithm

@@ -3,20 +3,26 @@ import numpy as np
 def Nussinov(seq, minloop = 3):
 
     seq = seq.upper()
-    N   = len(seq)
+    N   = len(seq)    # sequence length
 
+    # base pair scores
     bps = {"GU":1,"UG":1,
            "AU":2,"UA":2,
            "GC":3,"CG":3}
 
+    # score matrix
     D = np.zeros((N,N))
+    # base pair dictionary for traceback
     K = {}
 
+    # going diagonale by diagonale
     for h in range(N):
-        for i in range(N-h):
+        # row index
+        for i in range(N - h):
+            # column index
+            j = i + h
 
-            j = i+h
-
+            # too short hairpin
             if j - i - 1 < minloop:
 
                 D[i,j] = 0
@@ -24,22 +30,23 @@ def Nussinov(seq, minloop = 3):
             else:
 
                 bestk, bestscorek = -1, -1
-
-                for k in range(i, j-minloop):
+                # searching for the optimal base pair
+                for k in range(i, j - minloop):
 
                     if seq[k] + seq[j] in bps:
                         scorek = D[i, k - 1] + D[k + 1, j - 1] + bps[seq[k] + seq[j]]
                         if scorek > bestscorek:
                             bestk, bestscorek = k, scorek
-
+                # see if no base pair is not better
                 if bestscorek >= D[i, j - 1]:
 
                     K[(i, j)] = bestk
                     D[i, j]   = bestscorek
-
+                # if it is
                 else:
                     D[i, j] = D[i, j - 1]
 
+    # traceback
     print(D)
     print(K)
                             
