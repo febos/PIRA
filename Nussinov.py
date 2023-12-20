@@ -15,36 +15,31 @@ def Nussinov(seq, minloop = 3):
     # base pair dictionary for traceback
     K = {}
 
-    # going diagonale by diagonale
-    for h in range(N):
+    # going diagonale by diagonale,
+    # skipping first [minloop] diagonals
+    # to avoid too short hairpins
+    for h in range(minloop + 1, N):
         # row index
         for i in range(N - h):
             # column index
             j = i + h
 
-            # too short hairpin
-            if j - i - 1 < minloop:
+            bestk, bestscorek = -1, -1
+            # searching for the optimal base pair
+            for k in range(i, j - minloop):
 
-                D[i,j] = 0
+                if seq[k] + seq[j] in bps:
+                    scorek = D[i, k - 1] + D[k + 1, j - 1] + bps[seq[k] + seq[j]]
+                    if scorek > bestscorek:
+                        bestk, bestscorek = k, scorek
+            # see if no base pair is not better
+            if bestscorek >= D[i, j - 1]:
 
+                K[(i, j)] = bestk
+                D[i, j]   = bestscorek
+            # if it is
             else:
-
-                bestk, bestscorek = -1, -1
-                # searching for the optimal base pair
-                for k in range(i, j - minloop):
-
-                    if seq[k] + seq[j] in bps:
-                        scorek = D[i, k - 1] + D[k + 1, j - 1] + bps[seq[k] + seq[j]]
-                        if scorek > bestscorek:
-                            bestk, bestscorek = k, scorek
-                # see if no base pair is not better
-                if bestscorek >= D[i, j - 1]:
-
-                    K[(i, j)] = bestk
-                    D[i, j]   = bestscorek
-                # if it is
-                else:
-                    D[i, j] = D[i, j - 1]
+                D[i, j] = D[i, j - 1]
 
     # traceback
     print(D)

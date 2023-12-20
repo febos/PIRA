@@ -1,6 +1,6 @@
 # PIRAT
 
-Python Implementations of RNA Algorithms & uTilities
+Python3 Implementations of RNA Algorithms & uTilities
 
 ## References
 
@@ -26,6 +26,8 @@ Number of structures
 Turner algorithm
 
 McCaskill algorithm
+
+pmcomp pmmulti (10.1093/bioinformatics/bth229)
 
 Sankoff algorithm
 
