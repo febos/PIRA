@@ -1,5 +1,7 @@
 import numpy as np
 
+### https://doi.org/10.1073/pnas.77.11.6309
+
 def Nussinov(seq, minloop = 3):
 
     seq = seq.upper()
@@ -42,14 +44,43 @@ def Nussinov(seq, minloop = 3):
                 D[i, j] = D[i, j - 1]
 
     # traceback
-    print(D)
-    print(K)
+    dbn = ['.' for ch in seq] # dbn template
+
+    queue = {(0, N - 1), } # start from the last cell
+
+    while queue:
+
+        newq = set()
+
+        # for each cell in the queue
+        for i,j in queue:
+            # if we have (k, j) base pair
+            if (i,j) in K:
+                k = K[(i,j)]
+                # if we have more base pairs before k  
+                if D[(i, k - 1)] > 0:
+                    newq.add((i, k - 1))
+                # if we have more base pairs inside [k, j]
+                if D[(k + 1, j - 1)] > 0:
+                    newq.add((k + 1, j - 1))
+                # add (k, j) bp to dbn
+                dbn[k] = '('
+                dbn[j] = ')'
+            # if j is unpaired
+            else:
+                # if we have more base pairs inside [i, j - 1]
+                if D[(i, j - 1)] > 0:
+                    newq.add((i, j - 1))
+        # update queue
+        queue = newq
+    
+    return ''.join(dbn)
                             
 
 if __name__ == "__main__":
 
-    #seq = "ACGUACGCUAGCUGCUCGAUCGUCGAUCGAUCGACGCUAGCGCGUCGGGU"
-    seq = "GGUCCAC"
+    seq = "ACGUACGCUAGCUGCUCGAUCGUCGAUCGAUCGACGCUAGCGCGUCGGGU"
+    #seq = "GGUUCCAC"
 
     dbn = Nussinov(seq)
 

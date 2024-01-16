@@ -9,13 +9,14 @@ https://rna.informatik.uni-freiburg.de/Teaching/ (https://doi.org/10.1093/nar/gk
 
 ## TODO
 
-implement Nussinov
+read Nussinov1978
 
-read Nussinov1978 (-> add ref to the implementation)
+Nussinov C++
 
 read Wuchty1999
 
-implement Wuchty
+implement Wuchty Python
+implement Wuchty C++
 
 _____________________________________
 
@@ -27,9 +28,9 @@ Turner algorithm
 
 McCaskill algorithm
 
-pmcomp pmmulti (10.1093/bioinformatics/bth229)
-
 Sankoff algorithm
+
+pmcomp pmmulti (10.1093/bioinformatics/bth229)
 
 SCFG
 
