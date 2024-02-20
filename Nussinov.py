@@ -43,7 +43,6 @@ def BackTrack(begin, end, K, minloop, partial = False):
 
 def Ekj(seq,k,j,inners):
 
-    bpstep = len(inners) == 1 and inners[0][0] == k + 1 and inners[0][1] == j - 1
     return bps[seq[k]+seq[j]]
 
 
@@ -96,28 +95,14 @@ def Nussinov(seq, minloop = 3):
 
 if __name__ == "__main__":
 
-    seq = "ACGUACGCUAGCUGCUCGAUCGUCGAUCGAUCGACGCUAGCGCGUCGGGU"
-    '''
-    ACGUACGCUAGCUGCUCGAUCGUCGAUCGAUCGACGCUAGCGCGUCGGGU
-    (((.((((..((((((((((((.....))))))).)).))))))))..))
-    51.0
-    '''
-
     seq = 'GGGCGGCUAGCUCAGCGGAAGAGCGCUCGCCUCACACGCGAGAGGUCGUAGGUUCAAGUCCUACGCCGCCCACCA'
-    '''
-    GGGCGGCUAGCUCAGCGGAAGAGCGCUCGCCUCACACGCGAGAGGUCGUAGGUUCAAGUCCUACGCCGCCCACCA
-    (((((((..((((....[..)))).(((((.......))))).....(((((..]....))))))))))))....
-
-    GGGCGGCUAGCUCAGCGGAAGAGCGCUCGCCUCACACGCGAGAGGUCGUAGGUUCAAGUCCUACGCCGCCCACCA
-    (((.((((..(((.((((..(((.(....)))).).)))))))((.(((((((...)..)))))))))))).)).
-    ((((((((.((((.......)))).(((((.(...).)))))))..(((((((...)..))))))))))))....
-    75.0
-    '''
+    dbn = '(((((((..((((....[..)))).(((((.......))))).....(((((..]....))))))))))))....'
     
     #seq = "GGUUCCAC"
 
-    score, dbn = Nussinov(seq)
+    score, pred = Nussinov(seq)
 
     print(seq)
     print(dbn)
+    print(pred)
     print(score)
