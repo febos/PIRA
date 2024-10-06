@@ -34,6 +34,8 @@ pmcomp pmmulti (10.1093/bioinformatics/bth229)
 
 SCFG
 
+MDS, SMACOF, BFSG
+
 Furier transformations
 
 bpseq <-> ct <-> dbn
